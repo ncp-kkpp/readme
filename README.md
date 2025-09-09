@@ -24,10 +24,9 @@ graph LR
 ```
 
 
-* 프론트엔드: React/Next 기반 SPA/SSR
-* 백엔드: Spring Boot (Batch 포함 가능), REST API
-* 데이터: RDBMS (PostgreSQL/MySQL 택1), 캐시(옵션)
-* 추천/생성: 규칙 + 모델 혼합(초기엔 규칙/템플릿 우선)
+* 프론트엔드: SPA/SSR 기반 프론트앤드
+* 백엔드: Spring Boot, FastAPI
+* 데이터: RDBMS PostgreSQL
 
 ---
 
