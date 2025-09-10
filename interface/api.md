@@ -63,6 +63,11 @@
   }
   ```
 
+3.  로그아웃
+- API TYPE: POST
+- END POINT: /auth/logout
+-   
+
 
 
 
