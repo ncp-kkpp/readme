@@ -18,7 +18,7 @@
 ```
 
 
-## 1. Auth 관련 API
+## 1. Auth 관련 API (Spring boot 서버)
 
 1) 로컬 회원가입
 - API TYPE: POST
@@ -66,11 +66,29 @@
 3.  로그아웃
 - API TYPE: POST
 - END POINT: /auth/logout
--   
+- REQUEST: header, cookie
+- RESPONSE:
+  ```json
+  {
+  "success": true,
+  }
+  ```
 
+4. access token 재발금
+- API TYPE: POST
+- END POINT
+- REQUEST:
+- RESPONSE:
+  
+5. 회원정보 조회
+- API TYPE: GET
+- END POINT:
+- REQUEST:
+- RESPONSE:
 
+   
 
-
+# 2. 요리 추천 API (Hyper X 서버)
 
 
 
