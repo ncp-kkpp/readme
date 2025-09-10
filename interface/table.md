@@ -1,6 +1,6 @@
 # 테이블 명세서
 
-## 계정 테이블
+## members (계정 관련 테이블)
 
 | 컬럼 | 타입 | 제약조건 | 기본값 | 설명 |
 | --- | --- | --- | --- | --- |
@@ -12,7 +12,7 @@
 | created_dt | TIMESTAMPTZ | NOT NULL | now() | 생성일 |
 | updated_dt | TIMESTAMPTZ | NOT NULL | now() | 수정일 |
 
-## refresh token 테이블
+## refresh token (refresh token 관련 테이블)
 
 | 컬럼 | 타입 | 제약조건 | 기본값 | 설명 |
 | --- | --- | --- | --- | --- |
