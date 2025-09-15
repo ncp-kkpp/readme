@@ -22,7 +22,7 @@
 
 1) 로컬 회원가입
 - API TYPE: POST
-- END POINT: /auth/signup
+- END POINT: /auth/join
 - REQUEST:
   ```json
   {
