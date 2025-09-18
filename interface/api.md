@@ -1,21 +1,5 @@
 # API 명세서
 
-## 실패 시 응답 공통 포맷
-
-```json
-{
-  "success": false,
-  "error": {
-    "code": "AUTH.INVALID_CREDENTIALS",
-    "message": "이메일 또는 비밀번호가 올바르지 않습니다.",
-    "details": {
-      "fieldErrors": [
-        { "field": "email", "reason": "INVALID_FORMAT" }
-      ]
-    }
-  }
-}
-````
 
 ## 1. Auth 관련 API (Spring Boot 서버)
 
@@ -86,20 +70,6 @@
 }
 ```
 
-### 4. Access Token 재발급
-
-* **API TYPE**: `POST`
-* **END POINT**: ❓ *(미정)*
-* **REQUEST**: ❓ *(미정)*
-* **RESPONSE**: ❓ *(미정)*
-
-### 5. 회원정보 조회
-
-* **API TYPE**: `GET`
-* **END POINT**: ❓ *(미정)*
-* **REQUEST**: ❓ *(미정)*
-* **RESPONSE**: ❓ *(미정)*
-
 ## 2. 요리 추천 API (Clova X 서버)
 
 ### 1. Health 관련 API
@@ -169,4 +139,102 @@
 ```
 
 위와 같이 마크다운 문법으로 작성했습니다. 바로 복사해서 사용하실 수 있습니다!
+```
+
+## 3. 식단표 관련 API (Spring Boot 서버)
+
+### 1. 식단표 생성
+
+* **API TYPE**: `POST`
+* **END POINT**: `/meal-plan/create`
+
+#### Request
+
+```json
+{
+  "title": "9월 3주차 감량 플랜",
+  "period": "weekly",
+  "goals": "weight_loss",
+  "age": 28,
+  "gender": "female",
+  "basic_metabolism": 1380,
+  
+  "items": [
+    {
+      "day_no": 1,
+      "meal_type": "lunch",
+      "item": "닭가슴살 샐러드",
+    }, ...
+  ]
+}
+```
+
+#### Response
+
+```json
+{
+  "success": true,
+  "data": {
+    "meal_plan_id": "123"
+  }
+}
+```
+
+### 2. 식단표 목록 조회
+
+* **API TYPE**: `GET`
+* **END POINT**: `/meal-plan`
+
+#### Response
+
+```json
+{
+  "success": true,
+  "data": [
+	  {
+	  "title": "9월 3주차 감량 플랜",
+	  "period": "weekly",
+	  "goals": "weight_loss",
+	  "age": 28,
+	  "gender": "female",
+	  "basic_metabolism": 1380,
+	  "create_dt": "2025-09-14"
+	  "update+dt": "2025-09-15"
+	  }, ...
+  ]
+}
+```
+
+### 3. 식단표 상세 조회
+
+* **API TYPE**: `GET`
+* **END POINT**: `/meal-plan/{meal_plan_id}`
+
+#### Response
+
+```json
+{
+  "success": true,
+  "data": [
+	  {
+      "day_no": 1,
+      "meal_type": "lunch",
+      "item": "닭가슴살 샐러드",
+    }, ...
+  ]
+}
+```
+
+### 4. 식단표 삭제
+
+* **API TYPE**: `POST`
+* **END POINT**: `/meal-plan/delete/{meal_plan_id}`
+
+
+#### Response
+
+```json
+{
+  "success": true
+}
 ```
