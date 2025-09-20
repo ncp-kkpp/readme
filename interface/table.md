@@ -87,3 +87,48 @@ CREATE TABLE meal_plan_item (
 
 CREATE INDEX idx_meal_plan_item_plan ON meal_plan_item(meal_plan_id);
 ```
+
+## meal_plan_item (식단표 내 식단 관리)
+
+| 컬럼명 | 타입 | 제약조건 | 기본값 | 설명 |
+| --- | --- | --- | --- | --- |
+| id | BIGINT | PK, GENERATED ALWAYS AS IDENTITY | 자동 증가 | 식별자 (고유 ID) |
+| user_id | VARCHAR(320) | NOT NULL |  | 사용자 ID |
+| name | TEXT | NOT NULL |  | 식재료 이름 |
+| search_count | INTEGER | NOT NULL, CHECK (search_count >= 0) | 1 | 누적 검색 횟수 |
+| create_dt | TIMESTAMPTZ | NOT NULL | now() | 생성 시각 |
+| update_dt | TIMESTAMPTZ | NOT NULL | now() (트리거로 갱신) | 마지막 수정 시각 |
+| deleted_yn | VARCHAR(1) | NOT NULL | ‘N’ | 삭제 여부 |
+
+```sql
+CREATE TABLE freq_search_ingredient (
+    id               BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    user_id          VARCHAR(320) NOT NULL,
+    name             TEXT NOT NULL,
+    search_count     INTEGER NOT NULL DEFAULT 1
+                       CHECK (search_count >= 0),
+    create_dt        TIMESTAMPTZ NOT NULL DEFAULT now(),
+    update_dt        TIMESTAMPTZ NOT NULL DEFAULT now(),
+    CONSTRAINT uq_fsi_user_name UNIQUE (user_id, name)
+);
+
+-- 조회 최적화용 인덱스 (개인화 순위/최근 검색 정렬)
+CREATE INDEX idx_fsi_user_count
+    ON freq_search_ingredient (user_id, search_count DESC);
+
+CREATE INDEX idx_fsi_user_last
+    ON freq_search_ingredient (user_id, update_dt DESC);
+
+-- update_dt 자동 갱신 트리거
+CREATE OR REPLACE FUNCTION set_update_dt_fsi() RETURNS trigger AS $$
+BEGIN
+    NEW.update_dt := now();
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_set_update_dt_fsi
+BEFORE UPDATE ON freq_search_ingredient 
+FOR EACH ROW
+EXECUTE FUNCTION set_update_dt_fsi();
+```
