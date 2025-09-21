@@ -67,7 +67,7 @@ UNIQUE (meal_plan_id, day_no, meal_type)
 |---------------|--------------------------|---------------------------------|--------|-------------------------------|
 | id            | BIGINT IDENTITY          | PK, NOT NULL                   |        | 식단 ID                       |
 | meal_plan_id  | BIGINT                   | FK (meal_plan.id), NOT NULL    |        | 식단표 ID                     |
-| day_no        | INT                      | NOT NULL<br>weekly → 1~7<br>monthly → 1~31 |        | 식단 번호 (date로 변경 고민중) |
+| day_no        | INT                      | NOT NULL<br>weekly → 1...7<br>monthly → 1...31 |        | 식단 번호 (date로 변경 고민중) |
 | meal_type     | VARCHAR(20) | NOT NULL <br> (breakfast, lunch, dinner)                 |        | 식사 종류 (아침/점심/저녁)    |
 | item          | TEXT            |                                 |        | 식단 항목(내용)               |
 
@@ -89,7 +89,7 @@ CREATE TABLE meal_plan_item (
 CREATE INDEX idx_meal_plan_item_plan ON meal_plan_item(meal_plan_id);
 ```
 
-## frequ_search_ingredient (자주 검색한 식재료)
+## freq_search_ingredient (자주 검색한 식재료)
 
 | 컬럼명       | 타입        | 제약조건                               | 기본값 | 설명             |
 |--------------|-------------|----------------------------------------|--------|------------------|
