@@ -238,3 +238,126 @@
   "success": true
 }
 ```
+
+
+
+
+## 4. 자주 찾는 식재료 관련 API (Spring Boot 서버)
+
+
+### 1. 자주 찾는 식재료 등록
+
+* **API TYPE**: `POST`
+* **END POINT**: `/freq-ingrdt/upsert`
+
+#### Request
+
+```json
+["사과", "우유"]
+```
+
+
+#### Response
+
+```json
+{
+    "success": true,
+    "data": [
+        {
+            "id": 11,
+            "user_id": "test@example.com",
+            "name": "사과",
+            "search_count": 4,
+            "create_dt": "2025-09-21T19:15:10.004873+09:00",
+            "update_dt": "2025-09-21T19:17:45.654735+09:00"
+        },
+        {
+            "id": 16,
+            "user_id": "test@example.com",
+            "name": "우유",
+            "search_count": 2,
+            "create_dt": "2025-09-21T19:15:45.757046+09:00",
+            "update_dt": "2025-09-21T19:17:45.654735+09:00"
+        }, ...
+    ]
+}
+```
+
+### 2. 자주 찾는 식재료 조회
+
+* **API TYPE**: `GET`
+* **END POINT**: `/freq-ingrdt/`
+
+
+#### Response
+
+```json
+{
+    "success": true,
+    "data": [
+        {
+            "id": 11,
+            "user_id": "test@example.com",
+            "name": "사과",
+            "search_count": 2,
+            "create_dt": "2025-09-21T19:15:10.004873+09:00",
+            "update_dt": "2025-09-21T19:15:33.020092+09:00"
+        },
+        {
+            "id": 12,
+            "user_id": "test@example.com",
+            "name": "바나나나나",
+            "search_count": 2,
+            "create_dt": "2025-09-21T19:15:10.004873+09:00",
+            "update_dt": "2025-09-21T19:15:33.020092+09:00"
+        }
+    ]
+}
+```
+
+
+### 3. 자주 찾는 식재료 삭제
+* **API TYPE**: `DELETE`
+* **END POINT**: `/freq-ingrdt/delete/{id}`
+
+
+#### Response
+
+```json
+{
+    "success": true,
+    "data": [
+        {
+            "id": 2,
+            "user_id": "test@example.com",
+            "name": "우유",
+            "search_count": 3,
+            "create_dt": "2025-09-21T03:15:57.337548+09:00",
+            "update_dt": "2025-09-21T03:16:11.778209+09:00"
+        },
+        {
+            "id": 8,
+            "user_id": "test@example.com",
+            "name": "바나나나나",
+            "search_count": 2,
+            "create_dt": "2025-09-21T03:16:20.789061+09:00",
+            "update_dt": "2025-09-21T19:12:51.698454+09:00"
+        }
+    ]
+}
+```
+
+
+### 4. 자주 찾는 식재료 RESET
+* **API TYPE**: `DELETE`
+* **END POINT**: `/freq-ingrdt/reset`
+
+
+#### Response
+
+```json
+{
+    "success": true,
+    "data": []
+}
+```
