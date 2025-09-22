@@ -25,7 +25,9 @@
   "success": true,
   "data": {
     "login_id": "user@example.com",
-    "name": "홍길동"
+    "name": "홍길동",
+	"created_dt": "2025-09-23T00:25:34.547591+09:00",
+    "updated_dt": "2025-09-23T00:25:34.547591+09:00"
   }
 }
 ```
@@ -50,8 +52,10 @@
 {
   "success": true,
   "data": {
-    "accessToken": "eyJhbGciOiJIUzI1...",
-    "refreshToken": "eyJhbGciOiJIUzI1..."
+    "login_id": "user@example.com",
+    "name": "홍길동",
+	"created_dt": "2025-09-23T00:25:34.547591+09:00",
+    "updated_dt": "2025-09-23T00:25:34.547591+09:00"
   }
 }
 ```
