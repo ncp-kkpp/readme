@@ -12,9 +12,9 @@
 
 ```json
 {
-  "email": "user@example.com",
+  "login_id": "user@example.com",
   "password": "password123!",
-  "nickname": "홍길동"
+  "name": "홍길동"
 }
 ```
 
@@ -24,7 +24,7 @@
 {
   "success": true,
   "data": {
-    "email": "user@example.com",
+    "login_id": "user@example.com",
     "name": "홍길동"
   }
 }
@@ -39,7 +39,7 @@
 
 ```json
 {
-  "email": "user@example.com",
+  "login_id": "user@example.com",
   "password": "plainPassword123!"
 }
 ```
