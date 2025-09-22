@@ -227,7 +227,7 @@
 
 ### 4. 식단표 삭제
 
-* **API TYPE**: `POST`
+* **API TYPE**: `DELETE`
 * **END POINT**: `/meal-plan/delete/{meal_plan_id}`
 
 
